@@ -18,21 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private DataSource ds;
 	
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		/*
-		 * // HARDCODED USERS
-		 * 
-		 * UserBuilder users = User.withDefaultPasswordEncoder();
-		 * 
-		 * auth.inMemoryAuthentication()
-		 * .withUser(users.username("emina").password("test123").roles("EMPLOYEE"))
-		 * .withUser(users.username("mihajlo").password("test123").roles("EMPLOYEE",
-		 * "LEADER"))
-		 * .withUser(users.username("despot").password("test123").roles("EMPLOYEE",
-		 * "ADMIN"));
-		 */
-		
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {		
 		//povezano je sa tabelama u sql serveru
 		auth.jdbcAuthentication().dataSource(ds)
 		.usersByUsernameQuery("SELECT KORISNICKO_IME,LOZINKA,ENABLED FROM AUTENTIFIKACIJA WHERE KORISNICKO_IME=?")
@@ -40,7 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//uzima usera(kor ime, password i enabled) sa datim korisnickim imenom 
 		//enabled = da je user aktivan
 		//authorities - uzima ulogu za datog usera
-		
 	}
 	
 	@Override
@@ -55,7 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/usluge/**").hasRole("KLIJENT") //na url koji pocinje sa /usluge, moci ce da udje samo user sa klijent ulogom
 			.and()
 			.formLogin()
-				.loginPage("/showLoginPage") //ovde se nalazi login stranica
+				.loginPage("/login") //ovde se nalazi login stranica
 				.loginProcessingUrl("/autentifikacija") //na ovom url se obavlja autentifikacija (security se pobrinuo za to)
 				.usernameParameter("korisnicko_ime") //menjanje parametra sa username na 'korisnicko_ime' (koristi se u formama)
 				.passwordParameter("lozinka") //menjanje parametra sa password na 'lozinka' (koristi se u formama)
