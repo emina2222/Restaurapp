@@ -1,3 +1,8 @@
+p{
+	font-family:'Rajdhani', sans-serif;
+	font-weight:bold;
+	font-size:1.2em;
+}
 .centar{
 	text-align:center;
 }
@@ -9,4 +14,27 @@
 }
 .logo-pozadina{
 	background-color:black;
+}
+.login-warning{
+	background-color:yellow;
+	padding:2%;
+}
+.category-bg{
+	padding:3%;
+	background-color:black;
+}
+.category-rectangle{
+	border:1px solid red;
+	padding:2%;
+	position:relative;
+}
+.category-rectangle>h1{
+	transition:0.5s ease-in;
+	font-size:2em;
+	font-family: 'Parisienne', sans-serif;
+	text-align:center;
+	color:white;
+}
+.category-rectangle:hover>h1{
+	transform:scale(1.2);
 }

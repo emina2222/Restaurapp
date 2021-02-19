@@ -47,64 +47,27 @@
 		</div>
 	</div>
 	
-	<security:authorize access="isAnonymous()">
-		<div class="row login-warning">
-			<div class="col-md-12 centar">
-				<p>You are not logged in.</p>
-				<a href="${pageContext.request.contextPath}/login"><input type="submit" class="dugme" value="Log in"/></a>
-			</div>
+	<div class="row">
+	<div class="col-md-3"></div>
+	<div class="col-md-6">
+	<form:form class="well form-horizontal" action="${pageContext.request.contextPath}/registrationProcessFinal" method="POST">
+		<input type="hidden" value="${username}" name="idKred"/>
+		
+		<p>Name: 
+			<input type="text" name="name" class="form-control"/>
+		</p>
+		
+		<p>Surname: 
+			<input type="password" name="surname" class="form-control"/>
+		</p>
+		
+		<div class="centar">
+			<input type="submit" class="dugme" value="Finish"/>
 		</div>
-	</security:authorize>
-	
-	<security:authorize access="isAuthenticated()">
-		<div class="row login-warning">
-			<div class="col-md-12 centar">
-				<p>User: <security:authentication property="principal.username"/></p>
-				<a href="${pageContext.request.contextPath}/logout"><input type="submit" class="dugme" value="Log out"/></a>
-				<p>${message}</p>
-			</div>
-		</div>
-	</security:authorize>
-	
-	<security:authorize access="hasAuthority('ADMIN')">
-		<div class="row category-bg">
-			<div class="col-md-4 category-rectangle">
-				<h1>Menu</h1>
-			</div>
-			<div class="col-md-4 category-rectangle">
-				<h1>Card of drinks</h1>
-			</div>
-			<div class="col-md-4 category-rectangle">
-				<h1>Employees</h1>
-			</div>
-		</div>
-		<div class="row category-bg">
-			<div class="col-md-4 category-rectangle">
-				<h1>Tables</h1>
-			</div>
-			<div class="col-md-4 category-rectangle">
-				<h1>Statistics</h1>
-			</div>
-			<div class="col-md-4 category-rectangle" onclick="window.location.href='${pageContext.request.contextPath}/registration'">
-				<h1>New user</h1>
-			</div>
-		</div>
-	</security:authorize>
-	
-	<security:authorize access="hasAuthority('WAITER')">
-		<div class="row category-bg">
-			<div class="col-md-4 category-rectangle">
-				<h1>Orders</h1>
-			</div>
-			<div class="col-md-4 category-rectangle">
-				<h1>Billing</h1>
-			</div>
-			<div class="col-md-4 category-rectangle">
-				<h1>Tables</h1>
-			</div>
-		</div>
-	</security:authorize>
-	
+	</form:form>
+	</div>
+	<div class="col-md-3"></div>
+	</div>
 	
 
 </div>
